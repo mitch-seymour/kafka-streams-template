@@ -5,10 +5,6 @@ plugins {
   id 'com.github.sherter.google-java-format' version '0.9'
 }
 
-ext {
-  kafkaStreamsVersion = '2.8.0'
-}
-
 application {
   mainClassName = 'com.example.App'
 }
@@ -21,7 +17,7 @@ sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
 dependencies {
-  implementation "org.apache.kafka:kafka-streams:${kafkaStreamsVersion}"
+  implementation 'org.apache.kafka:kafka-streams:2.8.0'
 
   // required for JSON serializer
   implementation 'com.google.code.gson:gson:2.8.5'
@@ -30,7 +26,7 @@ dependencies {
   implementation 'ch.qos.logback:logback-classic:1.2.3'
 
   // test dependencies
-  testImplementation "org.apache.kafka:kafka-streams-test-utils:${kafkaStreamsVersion}"
+  testImplementation 'org.apache.kafka:kafka-streams-test-utils:2.8.0'
   testImplementation 'org.junit.jupiter:junit-jupiter:5.6.2'
   testImplementation 'org.assertj:assertj-core:3.15.0'
 }
