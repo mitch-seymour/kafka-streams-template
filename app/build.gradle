@@ -1,0 +1,50 @@
+plugins {
+  id 'application'
+
+  // https://plugins.gradle.org/plugin/com.github.sherter.google-java-format
+  id 'com.github.sherter.google-java-format' version '0.9'
+}
+
+ext {
+  kafkaStreamsVersion = '2.8.0'
+}
+
+application {
+  mainClassName = 'com.example.App'
+}
+
+repositories {
+  mavenCentral()
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+dependencies {
+  implementation "org.apache.kafka:kafka-streams:${kafkaStreamsVersion}"
+
+  // required for JSON serializer
+  implementation 'com.google.code.gson:gson:2.8.5'
+
+  // logging
+  implementation 'ch.qos.logback:logback-classic:1.2.3'
+
+  // test dependencies
+  testImplementation "org.apache.kafka:kafka-streams-test-utils:${kafkaStreamsVersion}"
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.6.2'
+  testImplementation 'org.assertj:assertj-core:3.15.0'
+}
+
+// code formatting + error prone
+tasks.withType(JavaCompile).configureEach { javaCompile ->
+  javaCompile.dependsOn 'googleJavaFormat'
+  options.compilerArgs << "-Xlint:deprecation"
+  options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
