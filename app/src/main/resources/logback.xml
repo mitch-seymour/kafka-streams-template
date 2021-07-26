@@ -9,7 +9,7 @@
 
     <!-- overriding the default log level per class / package -->
     <!-- <logger name="com.example" level="INFO" /> -->
-    <root level="INFO">
+    <root level="WARN">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
