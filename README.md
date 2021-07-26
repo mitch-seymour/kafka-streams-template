@@ -26,7 +26,7 @@ cd app/
 ```
 
 # Customizing
-- The script for pre-creating and pre-populating topics can be found in [/scripts/create-topics.sh](/scripts/create-topics.sh)
+- The script for pre-creating and pre-populating topics can be found in [/scripts/bootstrap-topics.sh](/scripts/bootstrap-topics.sh)
 - The root directory for the Kafka Streams app can be found in the [/app](/app) directory
 - Dependencies can be updated and added to [/app/build.gradle](/app/build.gradle)
 - Your Kafka Streams topology can be updated in [/app/src/main/java/com/example/MyTopology.java](/app/src/main/java/com/example/MyTopology.java)
