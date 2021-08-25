@@ -6,7 +6,7 @@ plugins {
 }
 
 application {
-  mainClassName = 'com.example.App'
+  mainClass = 'com.example.App'
 }
 
 repositories {
@@ -19,8 +19,8 @@ targetCompatibility = JavaVersion.VERSION_11
 dependencies {
   implementation 'org.apache.kafka:kafka-streams:2.8.0'
 
-  // required for JSON serializer
-  implementation 'com.google.code.gson:gson:2.8.5'
+  // configuration
+  implementation "com.typesafe:config:1.4.0"
 
   // logging
   implementation 'ch.qos.logback:logback-classic:1.2.3'
