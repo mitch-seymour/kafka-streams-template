@@ -3,6 +3,9 @@ plugins {
 
   // https://plugins.gradle.org/plugin/com.github.sherter.google-java-format
   id 'com.github.sherter.google-java-format' version '0.9'
+
+  // use to containerize the app
+  id 'com.google.cloud.tools.jib' version '2.1.0'
 }
 
 application {
@@ -43,4 +46,20 @@ test {
     testLogging {
         events "passed", "skipped", "failed"
     }
+}
+
+jib {
+  to {
+    image = 'example/myapp:0.1.0'
+  }
+  extraDirectories.paths = ['files']
+  container {
+    jvmFlags = [
+      // config to use in the Docker container
+      '-Dconfig.file=/docker.conf',
+    ]
+    mainClass = application.mainClass
+    labels = [key1:'value1', key2:'value2']
+    format = 'OCI'
+  }
 }
